@@ -24,19 +24,19 @@ export default async function Home() {
   const exercises: Exercise[] = await getData();
   console.log("data: " , exercises);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-lg lg:flex">
         {exercises.map(exercise => (
-          <div key={exercise.id} className='flex flex-row space-x-3 m-12' >
+          <div key={exercise.id} className='flex items-center space-x-6 m-12' >
             <Image
               src={`/${exercise.image}.png`}
               alt="Picture of the exercise"
-              width={100} //automatically provided
-              height={100} //automatically provided
+              width={80} //automatically provided
+              height={80} //automatically provided
               // blurDataURL="data:..." automatically provided
               // placeholder="blur" // Optional blur-up while loading
             />
-            <p>{exercise.name}</p>
+            <span>{exercise.name}</span>
           </div>
         ))}
       </div>
