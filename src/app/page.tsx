@@ -2,7 +2,8 @@ import Image from 'next/image'
 
 type Exercise = {
   id: string,
-  name: string
+  name: string,
+  image: string
 }
 
 async function getData() {
@@ -26,7 +27,15 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         {exercises.map(exercise => (
-          <div key={exercise.id} >
+          <div key={exercise.id} className='flex flex-row space-x-3 m-12' >
+            <Image
+              src={`/${exercise.image}.png`}
+              alt="Picture of the exercise"
+              width={100} //automatically provided
+              height={100} //automatically provided
+              // blurDataURL="data:..." automatically provided
+              // placeholder="blur" // Optional blur-up while loading
+            />
             <p>{exercise.name}</p>
           </div>
         ))}
