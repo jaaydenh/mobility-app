@@ -39,6 +39,7 @@ export default async function Home() {
             <span>{exercise.name}</span>
           </div>
         ))}
+        <div className='text-center absolute inset-x-0 bottom-5'><button className="btn btn-primary btn-wide">Start</button></div>
       </div>
     </main>
   )
