@@ -1,10 +1,6 @@
 import Image from 'next/image'
-
-type Exercise = {
-  id: string,
-  name: string,
-  image: string
-}
+import Link from 'next/link'
+import { Exercise } from '../../types/types'
 
 async function getData() {
   const res = await fetch('http://localhost:4000/exercises');
@@ -39,7 +35,11 @@ export default async function Routine() {
             <span>{exercise.name}</span>
           </div>
         ))}
-        <div className='text-center absolute inset-x-0 bottom-5'><button className="btn btn-primary btn-wide">Start</button></div>
+        <div className='text-center absolute inset-x-0 bottom-5'>
+        <Link href="/exercises/0">
+          <button className="btn btn-primary btn-wide">Start</button>
+        </Link>
+        </div>
       </div>
     </main>
   )
