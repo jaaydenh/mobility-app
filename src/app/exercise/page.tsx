@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import ExerciseClient from './ExerciseClient'
 import { Exercise } from '../../types/types'
 
 async function getData() {
@@ -16,15 +15,16 @@ async function getData() {
   return res.json();
 }
 
-export default async function Home() {
-  // randomly select a set of 25 exercises
+const ExercisePage = async () => {
   const exercises: Exercise[] = await getData();
-  
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-lg lg:flex">
-        {"Exercise"}
+        <ExerciseClient exercises={exercises} />
       </div>
     </main>
   )
 }
+
+export default ExercisePage;

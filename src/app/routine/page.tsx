@@ -16,8 +16,9 @@ async function getData() {
   return res.json();
 }
 
-export default async function Routine() {
+const RoutinePage = async () => {
   const exercises: Exercise[] = await getData();
+  // randomly select a set of 25 exercises
   console.log("data: " , exercises);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
@@ -36,11 +37,13 @@ export default async function Routine() {
           </div>
         ))}
         <div className='text-center absolute inset-x-0 bottom-5'>
-        <Link href="/exercises/0">
-          <button className="btn btn-primary btn-wide">Start</button>
-        </Link>
+          <Link href='/exercise'>
+            <button className="btn btn-primary btn-wide">Start</button>
+          </Link>
         </div>
       </div>
     </main>
   )
 }
+
+export default RoutinePage;
