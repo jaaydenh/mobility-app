@@ -7,9 +7,9 @@ export default async function Home() {
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-lg lg:flex">
         {"Hello World"}
         <div className='text-center absolute inset-x-0 bottom-5'>
-        <Link href="/routine">
-          <button className="btn btn-primary btn-wide">Image Button</button>
-        </Link>
+          <Link href="/routine">
+            <button className="btn btn-primary btn-wide">Image Button</button>
+          </Link>
         </div>
       </div>
     </main>

@@ -32,7 +32,7 @@ const useCountdown = () => {
 
       const thisId = setInterval(() => {
         setCountdown(timer);
-        
+
         if (--timer < 0) {
           console.log('cleareeededed')
           clear();
