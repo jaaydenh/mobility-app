@@ -21,13 +21,14 @@ const RoutinePage = async () => {
   // randomly select a set of 25 exercises
   console.log("data: ", exercises);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-lg lg:flex">
+    <main className='flex min-h-screen flex-col items-center justify-center'>
+      <div className='max-w-5xl'>
         {exercises.map(exercise => (
-          <div key={exercise.id} className='flex items-center space-x-6 m-12' >
+          <div key={exercise.id} className='flex items-center space-x-6 m-6' >
             <Image
               src={`/${exercise.image}.png`}
-              alt="Picture of the exercise"
+              alt='Picture of the exercise'
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
               width={80} //automatically provided
               height={80} //automatically provided
             // blurDataURL="data:..." automatically provided
