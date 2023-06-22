@@ -19,10 +19,8 @@ const ExercisePage = async () => {
   const exercises: Exercise[] = await getData();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-lg lg:flex">
-        <ExerciseClient exercises={exercises} />
-      </div>
+    <main className="font-mono text-lg p-10 flex min-h-screen flex-col items-center space-y-10">
+      <ExerciseClient exercises={exercises} />
     </main>
   )
 }

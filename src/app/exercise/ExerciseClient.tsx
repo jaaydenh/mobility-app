@@ -65,12 +65,11 @@ const ExerciseClient: React.FC<ExerciseProps> = ({
 
   return (
     <>
-      <div>Exercise</div>
       <Image
         src={`/${exercises[exerciseIndex].image}.png`}
         alt="Picture of the exercise"
-        width={180} //automatically provided
-        height={180} //automatically provided
+        width={320} //automatically provided
+        height={320} //automatically provided
       // blurDataURL="data:..." automatically provided
       // placeholder="blur" // Optional blur-up while loading
       />

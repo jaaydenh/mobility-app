@@ -8,19 +8,16 @@ export default async function Page() {
   return (
     <main className='flex min-h-screen items-center justify-center'>
       <div className='text-center'>
-        <Title text='Mobility' />
-            <p className='text-lg mt-4 sm:py-4'>
-              See below your daily 10 min routines to improve your mobility.
-            </p>
+        <Title text='Daily Routines' />
         {/* <div className='flex justify-center'> */}
           <Link href='/routine' className='flex justify-center'>
-            <div className="card w-96 bg-base-100 shadow-xl">
-            <figure className="px-10 pt-10">
+            <div className="card w-80 bg-base-100 shadow-xl">
+            <figure className="px-6 pt-8">
               <Image 
                 src='/downward_dog.png' 
                 alt='See workouts!'
-                width={1000}
-                height={1000}
+                width={300}
+                height={300}
 
               />
             </figure>

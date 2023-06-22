@@ -6,7 +6,7 @@ interface Props {
 
 const Title = ({ text }: Props) => {
   return (
-    <h1 className='text-3xl font-bold'>{text}</h1>
+    <h1 className='m-6 text-3xl font-bold'>{text}</h1>
   );
 }
 
