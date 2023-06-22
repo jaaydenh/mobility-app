@@ -2,7 +2,7 @@ import ExerciseClient from './ExerciseClient'
 import { Exercise } from '../../types/types'
 
 async function getData() {
-  const res = await fetch('http://localhost:4000/exercises');
+  const res = await fetch('https://mobility-server-production.up.railway.app/exercises');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
