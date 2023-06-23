@@ -1,8 +1,10 @@
-import ExerciseClient from './ExerciseClient'
-import { Exercise } from '../../types/types'
+import ExerciseClient from './ExerciseClient';
+import { Exercise } from '../../types/types';
 
 async function getData() {
-  const res = await fetch('https://mobility-server-production.up.railway.app/exercises');
+  const res = await fetch(
+    'https://mobility-server-production.up.railway.app/exercises',
+  );
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -19,10 +21,10 @@ const ExercisePage = async () => {
   const exercises: Exercise[] = await getData();
 
   return (
-    <main className="font-mono text-lg p-10 flex min-h-screen flex-col items-center space-y-10">
+    <main className="flex min-h-screen flex-col items-center space-y-10 p-10 font-mono text-lg">
       <ExerciseClient exercises={exercises} />
     </main>
-  )
-}
+  );
+};
 
 export default ExercisePage;
