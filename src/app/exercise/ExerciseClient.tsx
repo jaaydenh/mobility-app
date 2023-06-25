@@ -53,16 +53,17 @@ const ExerciseClient: React.FC<ExerciseProps> = ({ exercises }) => {
 
   const handleTimerComplete = () => {
     // TODO: play sound
-    console.log('countdownApi?.isCompleted', countdownApi?.isCompleted);
     if (countdownApi?.isCompleted) {
-      console.log('isBreak: ', isBreak);
       if (isBreak) {
         setIsBreak(false);
         setDate(Date.now() + exercises[exerciseIndex].length);
-        youtubeRef?.current?.playVideo();
+        try {
+          youtubeRef?.current?.playVideo();
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         setIsBreak(true);
-        console.log('length: ', exercises[exerciseIndex].length);
         setDate(Date.now() + INITIAL_TIMER_DURATION);
         handleNext();
       }
