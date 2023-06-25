@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useRef } from 'react';
+import YouTube, { YouTubeProps, YouTubePlayer } from 'react-youtube';
 
+// import Image from 'next/image';
 import Countdown, { CountdownApi } from 'react-countdown';
 import { Exercise } from '../../types/types';
 
@@ -10,12 +11,16 @@ interface ExerciseProps {
   exercises: Exercise[];
 }
 
+const INITIAL_TIMER_DURATION = 5000;
+
 const ExerciseClient: React.FC<ExerciseProps> = ({ exercises }) => {
   const [exerciseIndex, setExerciseIndex] = useState(0);
-  const [date, setDate] = useState(Date.now() + 3000);
+  const [date, setDate] = useState(Date.now() + INITIAL_TIMER_DURATION);
   const [isBreak, setIsBreak] = useState(true);
   const [isTimerStarted, setIsTimerStarted] = useState(true);
   let countdownApi: CountdownApi | null = null;
+
+  const youtubeRef: YouTubePlayer = useRef(null);
 
   const setRef = (countdown: Countdown | null): void => {
     if (countdown) {
@@ -47,37 +52,66 @@ const ExerciseClient: React.FC<ExerciseProps> = ({ exercises }) => {
   };
 
   const handleTimerComplete = () => {
-    // play sound
+    // TODO: play sound
     console.log('countdownApi?.isCompleted', countdownApi?.isCompleted);
     if (countdownApi?.isCompleted) {
+      console.log('isBreak: ', isBreak);
       if (isBreak) {
         setIsBreak(false);
-        setDate(Date.now() + 8000);
+        setDate(Date.now() + exercises[exerciseIndex].length);
+        youtubeRef?.current?.playVideo();
       } else {
         setIsBreak(true);
-        setDate(Date.now() + 3000);
+        console.log('length: ', exercises[exerciseIndex].length);
+        setDate(Date.now() + INITIAL_TIMER_DURATION);
         handleNext();
       }
     }
   };
 
+  const opts: YouTubeProps['opts'] = {
+    height: '390',
+    width: '310',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 0,
+      controls: 1,
+      mute: 1,
+      modestbranding: 1,
+    },
+  };
+
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    youtubeRef.current = event.target;
+    event.target.mute();
+  };
+
+  const onPlayerEnd: YouTubeProps['onReady'] = (event) => {
+    event.target.playVideo();
+  };
+
   return (
     <>
-      <Image
+      {/* <Image
         src={`/${exercises[exerciseIndex].image}.png`}
         alt="Picture of the exercise"
         width={320} //automatically provided
         height={320} //automatically provided
         // blurDataURL="data:..." automatically provided
         // placeholder="blur" // Optional blur-up while loading
+      /> */}
+      <YouTube
+        videoId={exercises[exerciseIndex].videoId}
+        opts={opts}
+        onReady={onPlayerReady}
+        onEnd={onPlayerEnd}
       />
       <div>{exercises[exerciseIndex].name}</div>
-      <div>{exercises[exerciseIndex].description}</div>
+      {/* <div>{exercises[exerciseIndex].description}</div> */}
       <Countdown
         ref={setRef}
         key={date}
         date={date}
-        // renderer={props => <div>{props.seconds}</div>}
         renderer={(props) => (
           <span className="countdown font-mono text-4xl">
             <span
